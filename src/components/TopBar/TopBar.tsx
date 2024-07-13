@@ -1,0 +1,7 @@
+import css from './TopBar.module.css'
+
+const TopBar = () => {
+    return <div>TopBar</div>
+}
+
+export default TopBar
