@@ -11,7 +11,7 @@ const TopBar = () => {
 
             <div className={css.topbarCenter}>
                 <div className={css.searchBar}>
-                    <Search />
+                    <Search className={css.searchIcon} />
                     <input
                         type="text"
                         className={css.searchInput}
