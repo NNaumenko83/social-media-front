@@ -4,13 +4,22 @@ import Heart from '../../assets/heart.png'
 import Like from '../../assets/like.png'
 import { Users } from '../../dummyData'
 import { IPost } from '../../dummyData'
+import { useState } from 'react'
 
 type Props = {
     post: IPost
 }
 
 const Post = ({ post }: Props) => {
+    const [like, setLike] = useState<number>(post.like)
+    const [isLiked, setIsLiked] = useState<boolean>(false)
+
     const user = Users.find(user => user.id === post.userId)
+
+    const handleLikeClick = (): void => {
+        setLike(isLiked ? like - 1 : like + 1)
+        setIsLiked(!isLiked)
+    }
 
     return (
         <div className={css.post}>
@@ -37,10 +46,20 @@ const Post = ({ post }: Props) => {
                 </div>
                 <div className={css.postBottom}>
                     <div className="postBottomLeft">
-                        <img className={css.likeIcon} src={Like} alt="" />
-                        <img className={css.likeIcon} src={Heart} alt="" />
+                        <img
+                            className={css.likeIcon}
+                            src={Like}
+                            alt=""
+                            onClick={handleLikeClick}
+                        />
+                        <img
+                            className={css.likeIcon}
+                            src={Heart}
+                            alt=""
+                            onClick={handleLikeClick}
+                        />
                         <span className={css.postLikeCounter}>
-                            {post.like} people like it
+                            {like} people like it
                         </span>
                     </div>
                     <div className="postBottomRight">
