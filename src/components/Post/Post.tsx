@@ -1,14 +1,17 @@
-import React from 'react'
 import css from './Post.module.css'
-import personImg from '../../assets/person/1.jpeg'
 import { MoreVert } from '@mui/icons-material'
-import postImg from '../../assets/post/1.jpeg'
 import Heart from '../../assets/heart.png'
 import Like from '../../assets/like.png'
+import { Users } from '../../dummyData'
+import { IPost } from '../../dummyData'
 
-// type Props = {}
+type Props = {
+    post: IPost
+}
 
-const Post = () => {
+const Post = ({ post }: Props) => {
+    const user = Users.find(user => user.id === post.userId)
+
     return (
         <div className={css.post}>
             <div className={css.postWrapper}>
@@ -16,34 +19,34 @@ const Post = () => {
                     <div className={css.postTopLeft}>
                         <img
                             className={css.postProfileImg}
-                            src={personImg}
+                            src={user?.profilePicture}
                             alt=""
                         />
                         <span className={css.postUserName}>
-                            Mykola Naumenko
+                            {user?.username}
                         </span>
-                        <span className={css.postDate}>5 min ago</span>
+                        <span className={css.postDate}>{post.date}</span>
                     </div>
                     <div className={css.postTopRight}>
                         <MoreVert />
                     </div>
                 </div>
                 <div className={css.postCenter}>
-                    <span className={css.postText}>
-                        Hey! Its my first post!
-                    </span>
-                    <img className={css.postImg} src={postImg} alt="" />
+                    <span className={css.postText}>{post?.desc}</span>
+                    <img className={css.postImg} src={post.photo} alt="" />
                 </div>
                 <div className={css.postBottom}>
                     <div className="postBottomLeft">
                         <img className={css.likeIcon} src={Like} alt="" />
                         <img className={css.likeIcon} src={Heart} alt="" />
                         <span className={css.postLikeCounter}>
-                            32 people like it
+                            {post.like} people like it
                         </span>
                     </div>
                     <div className="postBottomRight">
-                        <span className={css.postCommentText}>9 comments</span>
+                        <span className={css.postCommentText}>
+                            {post.comment} comments
+                        </span>
                     </div>
                 </div>
             </div>
