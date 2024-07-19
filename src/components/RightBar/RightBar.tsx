@@ -7,9 +7,10 @@ import Online from '../Online/Online'
 
 import Person from '../../assets/person/1.jpeg'
 
-// type Props = {}
+type Props = { profile?: boolean | undefined }
 
-const RightBar = ({ profile }) => {
+const RightBar = ({ profile }: Props) => {
+    console.log('profile:', profile)
     const HomeRightbar = () => (
         <>
             <div className={css.birthdayContainer}>
@@ -115,7 +116,7 @@ const RightBar = ({ profile }) => {
     return (
         <div className={css.rightbar}>
             <div className={css.rightbarWrapper}>
-                <ProfileRightbar />
+                {profile ? <ProfileRightbar /> : <HomeRightbar />}
             </div>
         </div>
     )
