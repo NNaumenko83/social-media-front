@@ -21,13 +21,14 @@ import post9 from './assets/post/9.jpeg'
 import post10 from './assets/post/10.jpeg'
 
 export interface IPost {
-    id: number
+    _id: number
     desc?: string
-    photo: string
+    img: string
     date: string
     userId: number
-    like: number
+    likes: string[]
     comment: number
+    createdAt: string
 }
 
 export interface IUser {
@@ -93,7 +94,7 @@ export const Posts: IPost[] = [
     {
         id: 1,
         desc: 'Love For All, Hatred For None.',
-        photo: post1,
+        img: post1,
         date: '5 mins ago',
         userId: 1,
         like: 32,
@@ -101,7 +102,7 @@ export const Posts: IPost[] = [
     },
     {
         id: 2,
-        photo: post2,
+        img: post2,
         date: '15 mins ago',
         userId: 2,
         like: 2,
@@ -110,7 +111,7 @@ export const Posts: IPost[] = [
     {
         id: 3,
         desc: 'Every moment is a fresh beginning.',
-        photo: post3,
+        img: post3,
         date: '1 hour ago',
         userId: 3,
         like: 61,
@@ -118,7 +119,7 @@ export const Posts: IPost[] = [
     },
     {
         id: 4,
-        photo: post4,
+        img: post4,
         date: '4 hours ago',
         userId: 4,
         like: 7,
@@ -126,7 +127,7 @@ export const Posts: IPost[] = [
     },
     {
         id: 5,
-        photo: post5,
+        img: post5,
         date: '5 hours ago',
         userId: 5,
         like: 23,
@@ -134,7 +135,7 @@ export const Posts: IPost[] = [
     },
     {
         id: 6,
-        photo: post6,
+        img: post6,
         date: '1 day ago',
         userId: 6,
         like: 44,
@@ -143,7 +144,7 @@ export const Posts: IPost[] = [
     {
         id: 7,
         desc: 'Never regret anything that made you smile.',
-        photo: post7,
+        img: post7,
         date: '2 days ago',
         userId: 7,
         like: 52,
@@ -151,7 +152,7 @@ export const Posts: IPost[] = [
     },
     {
         id: 8,
-        photo: post8,
+        img: post8,
         date: '3 days ago',
         userId: 8,
         like: 15,
@@ -160,7 +161,7 @@ export const Posts: IPost[] = [
     {
         id: 9,
         desc: 'Change the world by being yourself.',
-        photo: post9,
+        img: post9,
         date: '5 days ago',
         userId: 9,
         like: 11,
@@ -168,10 +169,23 @@ export const Posts: IPost[] = [
     },
     {
         id: 10,
-        photo: post10,
+        img: post10,
         date: '1 week ago',
         userId: 10,
         like: 104,
         comment: 12,
     },
 ]
+
+export const postsImg: { [key: string]: string } = {
+    post1: post1,
+    post2: post2,
+    post3: post3,
+    post4: post4,
+    post5: post5,
+    post6: post6,
+    post7: post7,
+    post8: post8,
+    post9: post9,
+    post10: post10,
+}
