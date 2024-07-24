@@ -2,9 +2,10 @@ import css from './Post.module.css'
 import { MoreVert } from '@mui/icons-material'
 import Heart from '../../assets/heart.png'
 import Like from '../../assets/like.png'
-import { Users } from '../../dummyData'
-import { IPost } from '../../dummyData'
-import { useState } from 'react'
+// import { Users } from '../../dummyData'
+import { IPost, IUser } from '../../dummyData'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 type Props = {
     post: IPost
@@ -13,8 +14,23 @@ type Props = {
 const Post = ({ post }: Props) => {
     const [like, setLike] = useState<number>(post.like)
     const [isLiked, setIsLiked] = useState<boolean>(false)
+    const [user, setUser] = useState<IUser | undefined>()
+    console.log('user:', user)
 
-    const user = Users.find(user => user.id === post.userId)
+    // const user = Users.find(user => user.id === post.userId)
+
+    useEffect(() => {
+        const getUser = async (): Promise<void> => {
+            const res = await axios.get<{ data: IUser }>(
+                `http://localhost:8800/api/users/${post.userId}`,
+            )
+            console.log('res:', res.data)
+
+            setUser(res.data.data)
+        }
+
+        getUser()
+    }, [])
 
     const handleLikeClick = (): void => {
         setLike(isLiked ? like - 1 : like + 1)

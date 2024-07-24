@@ -1,12 +1,15 @@
 import css from './TopBar.module.css'
 import { Search, Person, Chat, Notifications } from '@mui/icons-material'
 import PersonImage from '../../assets/person/1.jpeg'
+import { Link } from 'react-router-dom'
 
 const TopBar = () => {
     return (
         <div className={css.topbarContainer}>
             <div className={css.topbarLeft}>
-                <span className={css.logo}>Social</span>
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                    <span className={css.logo}>Social</span>
+                </Link>
             </div>
 
             <div className={css.topbarCenter}>
