@@ -37,6 +37,8 @@ export interface IUser {
     username: string
     desc: string
     city: string
+    from: string
+    relationship: number
 }
 
 export const Users: IUser[] = [

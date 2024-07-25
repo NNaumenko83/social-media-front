@@ -40,11 +40,13 @@ const RightBar = ({ user }: Props) => {
                 </div>
                 <div className={css.rightbarInfoItem}>
                     <span className={css.rightbarInfoKey}>From:</span>
-                    <span className={css.rightbarInfoValue}>Madrid</span>
+                    <span className={css.rightbarInfoValue}>{user?.from}</span>
                 </div>
                 <div className={css.rightbarInfoItem}>
                     <span className={css.rightbarInfoKey}>Relationship:</span>
-                    <span className={css.rightbarInfoValue}>Single</span>
+                    <span className={css.rightbarInfoValue}>
+                        {user?.relationship}
+                    </span>
                 </div>
             </div>
             <h4 className={css.rightbarTitle}>User friends</h4>
