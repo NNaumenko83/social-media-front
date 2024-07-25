@@ -9,6 +9,7 @@ import axios from 'axios'
 import { format } from 'timeago.js'
 
 import noAvatar from '../../assets/person/noAvatar.png'
+import { Link } from 'react-router-dom'
 // import noCover from '../../assets/person/noCover.png'
 
 type Props = {
@@ -21,11 +22,11 @@ const Post = ({ post }: Props) => {
     const [user, setUser] = useState<IUser | undefined>()
 
     // const user = Users.find(user => user.id === post.userId)
-
+    console.log('post:', post)
     useEffect(() => {
         const getUser = async (): Promise<void> => {
             const res = await axios.get<{ data: IUser }>(
-                `http://localhost:8800/api/users/${post.userId}`,
+                `http://localhost:8800/api/users?userId=${post.userId}`,
             )
 
             setUser(res.data.data)
@@ -44,11 +45,14 @@ const Post = ({ post }: Props) => {
             <div className={css.postWrapper}>
                 <div className={css.postTop}>
                     <div className={css.postTopLeft}>
-                        <img
-                            className={css.postProfileImg}
-                            src={user?.profilePicture || noAvatar}
-                            alt=""
-                        />
+                        <Link to={`/profile/${user?.username}`}>
+                            <img
+                                className={css.postProfileImg}
+                                src={user?.profilePicture || noAvatar}
+                                alt=""
+                            />
+                        </Link>
+
                         <span className={css.postUserName}>
                             {user?.username}
                         </span>

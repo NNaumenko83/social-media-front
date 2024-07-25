@@ -35,6 +35,8 @@ export interface IUser {
     id: number
     profilePicture: string
     username: string
+    desc: string
+    city: string
 }
 
 export const Users: IUser[] = [

@@ -5,8 +5,25 @@ import TopBar from '../../components/TopBar/TopBar'
 import css from './Profile.module.css'
 import Post from '../../assets/post/3.jpeg'
 import Person from '../../assets/person/7.jpeg'
+import { useEffect, useState } from 'react'
+import { IUser } from '../../dummyData'
+import axios from 'axios'
 
 const Profile = () => {
+    const [user, setUser] = useState<IUser | undefined>()
+
+    useEffect(() => {
+        const getUser = async (): Promise<void> => {
+            const res = await axios.get<{ data: IUser }>(
+                `http://localhost:8800/api/users?username=jane`,
+            )
+
+            setUser(res.data.data)
+        }
+
+        getUser()
+    }, [])
+
     return (
         <>
             <TopBar />
@@ -20,16 +37,16 @@ const Profile = () => {
                         </div>
                         <div className={css.profileInfo}>
                             <h4 className={css.profileInfoName}>
-                                Profile Name
+                                {user?.username}
                             </h4>
                             <span className={css.profileInfoDesc}>
-                                Description
+                                {user?.desc}
                             </span>
                         </div>
                     </div>
                     <div className={css.profileRightBottom}>
-                        <Feed />
-                        <RightBar profile />
+                        <Feed username="jane" />
+                        <RightBar user={user} />
                     </div>
                 </div>
             </div>

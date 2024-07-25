@@ -6,11 +6,11 @@ import { Users } from '../../dummyData'
 import Online from '../Online/Online'
 
 import Person from '../../assets/person/1.jpeg'
+import { IUser } from '../../dummyData'
 
-type Props = { profile?: boolean | undefined }
+type Props = { user?: IUser }
 
-const RightBar = ({ profile }: Props) => {
-    console.log('profile:', profile)
+const RightBar = ({ user }: Props) => {
     const HomeRightbar = () => (
         <>
             <div className={css.birthdayContainer}>
@@ -36,7 +36,7 @@ const RightBar = ({ profile }: Props) => {
             <div className={css.rightbarInfo}>
                 <div className={css.rightbarInfoItem}>
                     <span className={css.rightbarInfoKey}>City:</span>
-                    <span className={css.rightbarInfoValue}>New York</span>
+                    <span className={css.rightbarInfoValue}>{user?.city}</span>
                 </div>
                 <div className={css.rightbarInfoItem}>
                     <span className={css.rightbarInfoKey}>From:</span>
@@ -116,7 +116,7 @@ const RightBar = ({ profile }: Props) => {
     return (
         <div className={css.rightbar}>
             <div className={css.rightbarWrapper}>
-                {profile ? <ProfileRightbar /> : <HomeRightbar />}
+                {user ? <ProfileRightbar /> : <HomeRightbar />}
             </div>
         </div>
     )
