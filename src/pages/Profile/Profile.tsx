@@ -3,11 +3,11 @@ import RightBar from '../../components/RightBar/RightBar'
 import SideBar from '../../components/SideBar/SideBar'
 import TopBar from '../../components/TopBar/TopBar'
 import css from './Profile.module.css'
-import Post from '../../assets/post/3.jpeg'
-import Person from '../../assets/person/7.jpeg'
 import { useEffect, useState } from 'react'
-import { IUser } from '../../dummyData'
+import { IUser, userImg } from '../../dummyData'
 import axios from 'axios'
+import noCoverImg from '../../assets/person/noCover.png'
+import noAvatar from '../../assets/person/noAvatar.png'
 
 const Profile = () => {
     const [user, setUser] = useState<IUser | undefined>()
@@ -32,8 +32,20 @@ const Profile = () => {
                 <div className={css.profileRight}>
                     <div className={css.profileRightTop}>
                         <div className={css.profileCover}>
-                            <img className={css.coverImg} src={Post} alt="" />
-                            <img className={css.userImg} src={Person} alt="" />
+                            <img
+                                className={css.coverImg}
+                                src={user?.coverPicture || noCoverImg}
+                                alt=""
+                            />
+                            <img
+                                className={css.userImg}
+                                src={
+                                    user
+                                        ? userImg[user.profilePicture]
+                                        : noAvatar
+                                }
+                                alt=""
+                            />
                         </div>
                         <div className={css.profileInfo}>
                             <h4 className={css.profileInfoName}>

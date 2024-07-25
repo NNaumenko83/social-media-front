@@ -2,13 +2,17 @@ import css from './RightBar.module.css'
 import BirthdayImg from '../../assets/gift.png'
 import AdImg from '../../assets/ad.png'
 
-import { Users } from '../../dummyData'
 import Online from '../Online/Online'
 
 import Person from '../../assets/person/1.jpeg'
 import { IUser } from '../../dummyData'
 
 type Props = { user?: IUser }
+
+enum Relationship {
+    SINGLE = 'Single',
+    MARRIED = 'Married',
+}
 
 const RightBar = ({ user }: Props) => {
     const HomeRightbar = () => (
@@ -22,11 +26,11 @@ const RightBar = ({ user }: Props) => {
             </div>
             <img className={css.rightbarAd} src={AdImg} alt="" />
             <h4 className={css.rightbarTitle}>Online friends</h4>
-            <ul className={css.rightbarFriendList}>
+            {/* <ul className={css.rightbarFriendList}>
                 {Users.map(user => (
                     <Online key={user.id} user={user} />
                 ))}
-            </ul>
+            </ul> */}
         </>
     )
 
@@ -45,7 +49,11 @@ const RightBar = ({ user }: Props) => {
                 <div className={css.rightbarInfoItem}>
                     <span className={css.rightbarInfoKey}>Relationship:</span>
                     <span className={css.rightbarInfoValue}>
-                        {user?.relationship}
+                        {user?.relationship === 1
+                            ? Relationship.SINGLE
+                            : user?.relationship === 2
+                            ? Relationship.MARRIED
+                            : '-'}
                     </span>
                 </div>
             </div>

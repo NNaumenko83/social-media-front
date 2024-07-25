@@ -3,7 +3,7 @@ import { MoreVert } from '@mui/icons-material'
 import Heart from '../../assets/heart.png'
 import Like from '../../assets/like.png'
 // import { Users } from '../../dummyData'
-import { IPost, IUser, postsImg } from '../../dummyData'
+import { IPost, IUser, postsImg, userImg } from '../../dummyData'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { format } from 'timeago.js'
@@ -48,7 +48,11 @@ const Post = ({ post }: Props) => {
                         <Link to={`/profile/${user?.username}`}>
                             <img
                                 className={css.postProfileImg}
-                                src={user?.profilePicture || noAvatar}
+                                src={
+                                    user
+                                        ? userImg[user.profilePicture]
+                                        : noAvatar
+                                }
                                 alt=""
                             />
                         </Link>

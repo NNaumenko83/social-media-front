@@ -12,7 +12,6 @@ import {
     WorkOutline,
 } from '@mui/icons-material'
 import CloseFriend from '../CloseFriend/CloseFriend'
-import { Users } from '../../dummyData'
 
 const SideBar = () => {
     return (
@@ -62,11 +61,11 @@ const SideBar = () => {
                 </ul>
                 <button className={css.sidebarButton}>Show more</button>
                 <hr className={css.sidebarHr} />
-                <ul className={css.sidebarFriendList}>
+                {/* <ul className={css.sidebarFriendList}>
                     {Users.map(user => (
                         <CloseFriend key={user.id} user={user} />
                     ))}
-                </ul>
+                </ul> */}
             </div>
         </div>
     )
