@@ -8,21 +8,23 @@ import { IUser, userImg } from '../../dummyData'
 import axios from 'axios'
 import noCoverImg from '../../assets/person/noCover.png'
 import noAvatar from '../../assets/person/noAvatar.png'
+import { useParams } from 'react-router-dom'
 
 const Profile = () => {
     const [user, setUser] = useState<IUser | undefined>()
+    const { username } = useParams()
 
     useEffect(() => {
         const getUser = async (): Promise<void> => {
             const res = await axios.get<{ data: IUser }>(
-                `http://localhost:8800/api/users?username=jane`,
+                `http://localhost:8800/api/users?username=${username}`,
             )
 
             setUser(res.data.data)
         }
 
         getUser()
-    }, [])
+    }, [username])
 
     return (
         <>
@@ -57,7 +59,7 @@ const Profile = () => {
                         </div>
                     </div>
                     <div className={css.profileRightBottom}>
-                        <Feed username="jane" />
+                        <Feed username={username} />
                         <RightBar user={user} />
                     </div>
                 </div>

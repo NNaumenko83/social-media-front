@@ -16,6 +16,7 @@ const Login = () => {
                         <input
                             placeholder="Password"
                             className={css.loginInput}
+                            type="password"
                         />
                         <button className={css.loginButton}>Log In</button>
                         <span className={css.loginForgot}>
